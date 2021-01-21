@@ -4,3 +4,14 @@ type User {
     email: String!
     role: String
 }
+
+input loginData {
+  email: String!
+  password: String!
+}
+
+type onLogin {
+  status: String!
+  Message: String!
+  Data: String!
+}
