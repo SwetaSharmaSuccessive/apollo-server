@@ -11,6 +11,7 @@ export default {
         Query: {
             ...user.getMyProfile,
         },
+        
     },
     typeDefs,
 };
