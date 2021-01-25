@@ -1,17 +1,18 @@
+import user from '../../service/user';
 import userInstance from '../../service/user';
 
 export default {
-  createTrainee: (parent, args) => {
+  createTrainee: (_, args) => {
     const { user } = args;
     return userInstance.createUser(user);
   },
-  updateTrainee: (parent, args) => {
+  updateTrainee: (_, args) => {
     const {
       id, role, name, email
     } = args;
     return userInstance.updateUser(id, role, name, email);
   },
-  deleteTrainee: (parent, args) => {
+  deleteTrainee: (_, args) => {
     const { id } = args;
     return userInstance.deleteUser(id);
   }
