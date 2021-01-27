@@ -5,10 +5,10 @@ type User {
     role: String
 }
 
-type deleteData {
-    id: ID
-    message: String
-}
+# type deleteData {
+#     id: ID
+#     message: String
+# }
 
 type Userdata {
     id: ID!

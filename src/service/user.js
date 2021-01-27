@@ -15,39 +15,22 @@ class User {
     }
   
     updateUser(id, role, name, email) {
-      if (this.getUser(id)){
-        const user = this.users.get(Number(id));
-        const  message = 'Successfully Updated';
+      const user = this.users.get(Number(id));
+      const  message = 'Successfully Updated';
 
-        this.users.set(Number(id), {
-          ...user, role, name, email, message
+      this.users.set(Number(id), {
+        ...user, role, name, email, message
         });
-        return this.users.get(Number(id));
-      }
-      else{
-        const  message = 'Failed Updated';
-        const id = -1
-        const data = { id, message };
-
-        return data;
-      }
+      return this.users.get(Number(id));
+      
     }
     deleteUser(id) {
-      if (this.getUser(id)){
-        this.users.delete(Number(id));
-        const message = ' Successfully Deleted';
-        const data = { id, message };
-        return data;
-      }
-      else{
-        const message = 'Id Not Found!';
-        const data = { id, message };
-        return data;
-      }
+      this.users.delete(Number(id));
+      return id;
     }
   
     getUser(id) {
       return this.users.get(Number(id));
     }
-  }
-  export default new User();
+}
+export default new User();

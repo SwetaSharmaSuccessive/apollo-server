@@ -14,6 +14,9 @@ export default {
   },
   deleteTrainee: (_, args) => {
     const { id } = args;
-    return userInstance.deleteUser(id);
+    if (id == user.id) {
+      return userInstance.deleteUser(id);
+    }
   }
+    
 };
