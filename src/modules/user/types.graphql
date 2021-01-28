@@ -4,16 +4,3 @@ type User {
     email: String!
     role: String
 }
-
-# type deleteData {
-#     id: ID
-#     message: String
-# }
-
-type Userdata {
-    id: ID!
-    name: String
-    email: String
-    role: String
-    message: String!
-}

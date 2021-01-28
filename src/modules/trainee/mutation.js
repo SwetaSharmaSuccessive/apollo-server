@@ -7,16 +7,21 @@ export default {
     return userInstance.createUser(user);
   },
   updateTrainee: (_, args) => {
-    const {
-      id, role, name, email
-    } = args;
-    return userInstance.updateUser(id, role, name, email);
+    try {
+      const {
+        id, role, name, email
+      } = args;
+      return userInstance.updateUser(id, role, name, email);
+    }
+    catch (err) {
+      return 
+    }
+    
   },
   deleteTrainee: (_, args) => {
     const { id } = args;
-    if (id == user.id) {
-      return userInstance.deleteUser(id);
-    }
+    return userInstance.deleteUser(id);
+
   }
     
 };
