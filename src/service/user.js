@@ -23,8 +23,9 @@ class User {
     }
   
     deleteUser(id) {
+      if (this.getUser(id)){
       this.users.delete(Number(id));
-      return id;
+      return id;}
     }
   
     getUser(id) {
