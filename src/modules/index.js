@@ -1,4 +1,5 @@
 import { fileLoader, mergeTypes } from 'merge-graphql-schemas';
+import  { UserInputError } from 'apollo-server';
 import path from 'path';
 import * as user from './user/index';
 import * as trainee from './trainee/index';

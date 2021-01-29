@@ -38,12 +38,12 @@ class Server {
         }
     }
     run() {
-        const { config: { PORT } } = this;
-        this.httpServer.listen(PORT, (err) => {
+        const { config: { port } } = this;
+        this.httpServer.listen(port, (err) => {
           if (err) {
             console.log(err);
           }
-          console.log(`Server is up and running on port ${PORT}`);
+          console.log(`Server is up and running on port ${port}`);
         });
     }
 }
