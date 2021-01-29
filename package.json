@@ -1,5 +1,5 @@
 {
-  "name": "apollo-server",
+  "name": "apollo_server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -27,11 +27,13 @@
     "nodemon": "^2.0.7"
   },
   "dependencies": {
+    "apollo-server": "^2.19.2",
     "apollo-server-express": "^2.19.2",
     "dotenv": "^8.2.0",
     "eslint": "^7.18.0",
     "express": "^4.17.1",
     "graphql": "^15.4.0",
+    "http": "0.0.1-security",
     "merge-graphql-schemas": "^1.7.8"
   }
 }
