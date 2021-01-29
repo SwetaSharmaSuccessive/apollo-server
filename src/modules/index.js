@@ -1,6 +1,8 @@
 import { fileLoader, mergeTypes } from 'merge-graphql-schemas';
+import  { UserInputError } from 'apollo-server';
 import path from 'path';
 import * as user from './user/index';
+import * as trainee from './trainee/index';
 
 const dirname = path.resolve();
 const typeArray = fileLoader(path.join(dirname, './**/*.graphql'));
@@ -10,8 +12,11 @@ export default {
     resolvers: {
         Query: {
             ...user.getMyProfile,
+            ...trainee.Query
         },
-        
+        Mutation: {
+            ...trainee.Mutation
+          }
     },
     typeDefs,
 };
