@@ -5,8 +5,9 @@ type Query {
 }
 type Mutation {
     createTrainee(user: CreateUserInput): User!
-    updateTrainee(id: ID!, role: String, name: String, email: String): User!
-    deleteTrainee(id: ID!):ID!
+    updateTrainee(payload: UpdateUserInput): [UserData!]
+    deleteTrainee(payload: DeleteId): String
+    loginUser(payload: loginData): String!
 }
 type Subscription {
     traineeAdded: User!

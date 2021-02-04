@@ -1,6 +1,7 @@
 import Express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { createServer } from 'http';
+import { TraineeAPI, UserAPI } from './datasource/index';
 
 class Server {
     constructor(config) {
@@ -24,6 +25,16 @@ class Server {
             const { app } = this;
             this.Server = new ApolloServer({
                 ...schema,
+                dataSources: () => ({
+                    userAPI: new UserAPI(),
+                    traineeAPI: new TraineeAPI(),
+                  }),
+                  context: ({ req }) => {
+                    if (req) {
+                      return { token: req.headers.authorization };
+                    }
+                    return {};
+                  },
                 healthCheck: () => new Promise((resolve) => {
                     resolve('I am OK !');
                 }),

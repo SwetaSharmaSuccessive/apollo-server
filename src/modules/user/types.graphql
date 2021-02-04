@@ -4,3 +4,36 @@ type User {
     email: String!
     role: String
 }
+
+input loginData {
+  email: String!
+  password: String!
+}
+
+type onLogin {
+  status: String!
+  Message: String!
+  Data: String!
+}
+type UserData {
+    id: ID!
+    name: String!
+    email: String!
+    role: String
+    originalId: String!
+}
+type GetTrainees {
+  message: String
+  totalCount: Int
+  count: Int
+  data: [[Details]]
+}
+
+type Details {
+  name: String
+  _id: ID
+  role: String
+  email: String
+  password: String
+  createdAt: String
+}

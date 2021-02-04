@@ -3,3 +3,18 @@ input CreateUserInput {
     email: String!
     role: String!
 }
+input UpdateUserInput {
+    id: String
+    name: String
+    email: String
+    role: String
+}
+input DeleteId{
+    originalId: ID!
+}
+
+input GetAllInput {
+    skip: Int
+    limit: Int
+    # sort: String        
+}

@@ -6,19 +6,35 @@ import { ApolloError, Error } from 'apollo-server-express';
 import errorMessage from '../../libs/errMessage';
 
 export default {
-  createTrainee: (_, args) => {
-    const { user } = args;
-    const addedUser = userInstance.createUser(user);
-    pubsub.publish(constant.subscriptions.TRAINEE_ADDED, { traineeAdded: addedUser });
-    return addedUser;
+  createTrainee: async (parent, args, context) => {
+    const {
+      user: {
+        name, email, role, password,
+      },
+    } = args;
+    const { dataSources: { traineeAPI } } = context;
+    const response = await traineeAPI.createdTrainee({
+      name, email, password, role,
+    });
+    console.log('Create Response--', response.data);
+    pubsub.publish(constant.subscriptions.TRAINEE_ADDED, { traineeAdded: response.data });
+    return response.data;
   },
-  updateTrainee: (parent, args) => {
+  updateTrainee: async (parent, args, context) => {
     try { 
       const {
-        id, role, name, email
+        payload: {
+          role, name, email, id,
+        },
       } = args;
-      const updatedUser = userInstance.updateUser(id, role, name, email);
-      pubsub.publish(constant.subscriptions.TRAINEE_UPDATED, { traineeUpdated: updatedUser });
+      const { dataSources: { traineeAPI } } = context;
+      const updatedUser = {
+        id, role, name, email,
+      };
+      const response = await traineeAPI.updatedTrainee({ ...updatedUser });
+      console.log('Update responeeee--', response);
+      // const updatedUser = userInstance.updateUser(id, role, name, email);
+      pubsub.publish(constant.subscriptions.TRAINEE_UPDATED, { traineeUpdated: response.data });
       if (!updatedUser.id) {
         throw new Error('error'); 
       }
@@ -28,10 +44,13 @@ export default {
       throw new ApolloError(errorMessage);
     }
   },
-  deleteTrainee: (parent, args) => {
+  deleteTrainee: async (parent, args, context) => {
     try{
-      const { id } = args;
-      const deletedId = userInstance.deleteUser(id);
+      const { payload: { originalId } } = args;
+      const { dataSources: { traineeAPI } } = context;
+      const deletedId = await traineeAPI.deletedTrainee(originalId);
+      console.log('delete--', deletedId);
+      // const deletedId = userInstance.deleteUser(id);
       pubsub.publish(constant.subscriptions.TRAINEE_DELETED, { traineeDeleted: deletedId });
       if ( deletedId === undefined) {
         throw new Error('error');
