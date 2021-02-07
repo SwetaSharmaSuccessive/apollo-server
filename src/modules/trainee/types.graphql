@@ -2,9 +2,10 @@ input CreateUserInput {
     name: String!
     email: String!
     role: String!
+    password: String!
 }
 input UpdateUserInput {
-    id: String
+    originalId: ID
     name: String
     email: String
     role: String
@@ -15,6 +16,5 @@ input DeleteId{
 
 input GetAllInput {
     skip: Int
-    limit: Int
-    # sort: String        
+    limit: Int        
 }

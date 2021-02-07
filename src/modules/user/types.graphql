@@ -1,8 +1,10 @@
 type User {
-    id: ID!
-    name: String!
-    email: String!
+    originalId: ID
+    name: String
+    email: String
+    password: String
     role: String
+    createdAt: String
 }
 
 input loginData {
@@ -16,9 +18,10 @@ type onLogin {
   Data: String!
 }
 type UserData {
-    id: ID!
+    _id: ID!
     name: String!
     email: String!
+    password: String
     role: String
     originalId: String!
 }
@@ -26,7 +29,7 @@ type GetTrainees {
   message: String
   totalCount: Int
   count: Int
-  data: [[Details]]
+  data: [Details]
 }
 
 type Details {
@@ -36,4 +39,9 @@ type Details {
   email: String
   password: String
   createdAt: String
+}
+
+type DeleteData {
+  message: String
+  status: String
 }

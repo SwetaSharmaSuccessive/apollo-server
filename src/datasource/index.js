@@ -1,2 +1,4 @@
 export * from './User';
-export * from './Trainee';
+import TraineeAPI from './Trainee';
+
+export { TraineeAPI };

@@ -4,7 +4,7 @@ import config from '../config/configuration';
 class TraineeAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = `${config.serviceUrl}/api/trainee`;
+    this.baseURL = `${config.serviceUrl}/api/`;
   }
 
   willSendRequest(request) {
@@ -12,19 +12,19 @@ class TraineeAPI extends RESTDataSource {
   }
 
   getAllTrainee({ skip, limit }) {
-    return this.get('/get', { skip, limit });
+    return this.get('trainee', { skip, limit });
   }
 
   createdTrainee(data) {
-    return this.post('/', data);
+    return this.post('trainee', data);
   }
 
   updatedTrainee(data) {
-    return this.put('/', data);
+    return this.put('trainee', data);
   }
 
-  deletedTrainee(originalId) {
-    return this.delete(`/delete?originalId=${originalId}`);
+  deletedTrainee(id) {
+    return this.delete(`trainee/${id}`);
   }
 }
 
