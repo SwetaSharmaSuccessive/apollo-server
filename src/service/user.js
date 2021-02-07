@@ -13,18 +13,19 @@ class User {
     this.users.set(this.id, { ...user, id: this.id });
     return this.users.get(this.id);
   }
-  
   updateUser(id, role, name, email) {
     const user = this.users.get(Number(id));
     this.users.set(Number(id), {
-      ...user, role, name, email,
+      ...user, role, name, email
     });
-    return this.users.get(Number(id));    
+    return this.users.get(Number(id));
   }
 
   deleteUser(id) {
-    this.users.delete(Number(id));
-    return id;
+    if (this.getUser(id)){
+      this.users.delete(Number(id));
+      return id;
+    }
   }
   
   getUser(id) {

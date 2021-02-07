@@ -1,6 +1,47 @@
 type User {
-    id: ID!
+    originalId: ID
+    name: String
+    email: String
+    password: String
+    role: String
+    createdAt: String
+}
+
+input loginData {
+  email: String!
+  password: String!
+}
+
+type onLogin {
+  status: String!
+  Message: String!
+  Data: String!
+}
+type UserData {
+    _id: ID!
     name: String!
     email: String!
+    password: String
     role: String
+    originalId: String!
+}
+type GetTrainees {
+  message: String
+  totalCount: Int
+  count: Int
+  data: [Details]
+}
+
+type Details {
+  name: String
+  _id: ID
+  role: String
+  email: String
+  password: String
+  createdAt: String
+}
+
+type DeleteData {
+  message: String
+  status: String
 }
